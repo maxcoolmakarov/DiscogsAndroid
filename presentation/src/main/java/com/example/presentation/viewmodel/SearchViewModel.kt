@@ -37,6 +37,8 @@ class SearchViewModel(val repository: SearchRepository) : ViewModel() {
             page = 2
             _loading.postValue(Unit)
 
+            _results.value = mutableListOf()
+
             val artistSearch = repository.searchArtists(search).toDisplay()
             val newResults: MutableList<ArtistListItem> = artistSearch.results.toMutableList()
 
@@ -47,7 +49,7 @@ class SearchViewModel(val repository: SearchRepository) : ViewModel() {
                 true
             }
 
-            _results.postValue(newResults)
+            _results.value = newResults
         }
 
     fun loadNextPage() {

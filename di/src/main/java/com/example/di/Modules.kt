@@ -1,6 +1,11 @@
 package com.example.di
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.example.data.datasource.FavoritesDao
 import com.example.data.datasource.SearchDataSource
+import com.example.data.repository.FavoritesDaoImpl
 import com.example.data.repository.SearchRepositoryImpl
 import com.example.data.utils.AuthInterceptor
 import com.example.domain.repository.SearchRepository
@@ -12,6 +17,7 @@ import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -67,6 +73,23 @@ class Modules {
             single { provideRetrofit(get(), get()) }
             single { provideGson() }
 
+        }
+
+        val sharedPrefModule = module {
+            fun provideSharedPref(app: Application): SharedPreferences {
+                return app.applicationContext.getSharedPreferences(
+                    "FAVORITES_KEY",
+                    Context.MODE_PRIVATE
+                )
+            }
+            single { provideSharedPref(androidApplication()) }
+        }
+
+        val favoriteModule = module {
+            fun bindFavoritesDao(sharedPreferences: SharedPreferences): FavoritesDao {
+                return FavoritesDaoImpl(sharedPreferences)
+            }
+            single { bindFavoritesDao(get()) }
         }
     }
 }

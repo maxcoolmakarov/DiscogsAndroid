@@ -1,10 +1,12 @@
 package com.example.presentation.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -31,6 +33,12 @@ class ArtistFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         artistViewModel.loadArtist(args.id)
         initObservers()
+        binding.saveButton.setOnClickListener {
+            artistViewModel.onFavoritesClicked()
+//            artistViewModel.favoritesState.observe(viewLifecycleOwner, {
+//                binding.saveButton.setColorFilter(if (it) R.color.yellow else R.color.colorPrimaryDark)
+//            })
+        }
     }
 
     private fun initObservers() {
@@ -54,6 +62,12 @@ class ArtistFragment : Fragment() {
 
         artistViewModel.error.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        })
+
+        artistViewModel.favoritesState.observe(viewLifecycleOwner, {
+            binding.saveButton.setColorFilter(if (it) ContextCompat.getColor(requireContext(),R.color.yellow)
+            else ContextCompat.getColor(requireContext(),R.color.black))
+            Log.d("observer", "oberved")
         })
     }
 }

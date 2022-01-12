@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.36615384615384616" />
+        <entry key="presentation/src/main/res/drawable/ic_favorite.xml" value="0.25104166666666666" />
+        <entry key="presentation/src/main/res/drawable/ic_save.xml" value="0.22395833333333334" />
         <entry key="presentation/src/main/res/layout/activity_search.xml" value="0.17299898682877407" />
         <entry key="presentation/src/main/res/layout/artist_item.xml" value="0.24003623188405798" />
         <entry key="presentation/src/main/res/layout/fragment_artist.xml" value="0.24003623188405798" />

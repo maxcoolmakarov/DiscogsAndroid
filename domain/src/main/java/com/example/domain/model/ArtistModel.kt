@@ -1,5 +1,8 @@
 package com.example.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ArtistModel(
     val name: String,
     val id: Int,
@@ -14,6 +17,7 @@ data class ArtistModel(
     val members: List<MemberModel>?
 )
 
+@Serializable
 data class ArtistImageModel(
     val type: String,
     val uri: String,
@@ -23,6 +27,7 @@ data class ArtistImageModel(
     val height: Int
 )
 
+@Serializable
 data class MemberModel(
     val id: Int,
     val name: String,

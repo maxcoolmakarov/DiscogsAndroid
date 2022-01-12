@@ -1,9 +1,7 @@
 package com.example.presentation.model
 
 import com.example.domain.model.ArtistModel
-import kotlinx.serialization.Serializable
 
-@Serializable
 data class ArtistDisplay(
     val image: String?,
     val title: String,

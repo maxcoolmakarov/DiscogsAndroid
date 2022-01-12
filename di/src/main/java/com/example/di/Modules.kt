@@ -29,7 +29,7 @@ class Modules {
     companion object {
         val viewModelModule = module {
             viewModel { SearchViewModel(get()) }
-            viewModel { ArtistViewModel(get()) }
+            viewModel { ArtistViewModel(get(), get()) }
         }
 
         val apiModule = module {
